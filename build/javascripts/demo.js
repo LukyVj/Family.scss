@@ -32,7 +32,7 @@ function first(num) {
 }
 document.getElementById('first').addEventListener('keyup', function(){
 	first(this.innerHTML)
-});
+})
 
 ///////////////////////////////
 // last
@@ -52,7 +52,7 @@ function last(num) {
 }
 document.getElementById('last').addEventListener('keyup', function(){
 	last(this.innerHTML)
-});
+})
 
 ///////////////////////////////
 // afterFirst
@@ -74,7 +74,7 @@ function afterFirst(num) {
 }
 document.getElementById('after-first').addEventListener('keyup', function(){
 	afterFirst(this.innerHTML)
-});
+})
 
 ///////////////////////////////
 // fromEnd
@@ -94,7 +94,7 @@ function fromEnd(num) {
 }
 document.getElementById('from-end').addEventListener('keyup', function(){
 	fromEnd(this.innerHTML)
-});
+})
 
 ///////////////////////////////
 // between
@@ -116,7 +116,8 @@ document.getElementById('between').addEventListener('keyup', function(){
 	var vala = document.getElementById('between-a').innerHTML;
 	var valb = document.getElementById('between-b').innerHTML;
 	between(vala, valb)
-});
+})
+
 
 ///////////////////////////////
 // evenBetween
@@ -138,7 +139,7 @@ document.getElementById('even-between').addEventListener('keyup', function(){
 	var vala = document.getElementById('even-between-a').innerHTML;
 	var valb = document.getElementById('even-between-b').innerHTML;
 	evenBetween(vala, valb)
-});
+})
 
 ///////////////////////////////
 // oddBetween
@@ -160,7 +161,7 @@ document.getElementById('odd-between').addEventListener('keyup', function(){
 	var vala = document.getElementById('odd-between-a').innerHTML;
 	var valb = document.getElementById('odd-between-b').innerHTML;
 	oddBetween(vala, valb)
-});
+})
 
 ///////////////////////////////
 // nBetween
@@ -183,7 +184,8 @@ document.getElementById('n-between').addEventListener('keyup', function(){
 	var valb = document.getElementById('n-between-b').innerHTML;
 	var valc = document.getElementById('n-between-c').innerHTML;
 	nBetween(vala, valb, valc)
-});
+})
+
 
 ///////////////////////////////
 // allBut
@@ -203,27 +205,69 @@ function allBut(num) {
 }
 document.getElementById('all-but').addEventListener('keyup', function(){
 	allBut(this.innerHTML)
-});
+})
 
 ///////////////////////////////
 // each
 ///////////////////////////////
 
-function each(num) {
-	function injectStyle(num){
+function each(numa, numb) {
+	function injectStyle(numa, numb){
 		document.getElementById('style-each').innerHTML = `ul.each li { ${preStyle} }`;
-		document.getElementById('style-each').innerHTML += `.each li:nth-child(${num}n){
-			${selectedStyle}
+
+		if (numb == 0) {
+  		document.getElementById('style-each').innerHTML += `.each li:nth-child(${numa}n){
+  			${selectedStyle}
+  		}
+  		`
 		}
-		`
+		else {
+  		document.getElementById('style-each').innerHTML += `.each li:nth-child(${numa}n + ${numb}){
+  			${selectedStyle}
+  		}
+  		`
+		}
 	}
 
-	var newStyle = injectStyle(num);
+	var newStyle = injectStyle(numa, numb);
 
 }
 document.getElementById('each').addEventListener('keyup', function(){
-	each(this.innerHTML)
-});
+	var vala = document.getElementById('each-every').innerHTML;
+	var valb = document.getElementById('each-from').innerHTML;
+	each(vala, valb)
+})
+
+///////////////////////////////
+// eachAfter
+///////////////////////////////
+
+function eachAfter(numa, numb) {
+	function injectStyle(numa, numb){
+		document.getElementById('style-each-after').innerHTML = `ul.each-after li { ${preStyle} }`;
+		// if (numb < numa ) {
+			document.getElementById('style-each-after').innerHTML += `.each-after li:nth-child(${numb - numa}n) ~ :nth-child(${numa}n){
+				${selectedStyle}
+			}
+			`
+		// }
+		//  else {
+		// 	document.getElementById('style-each-after').innerHTML += `.each-after li:nth-child(${numb}n) ~ :nth-child(${numa}n){
+		// 		${selectedStyle}
+		// 	}
+		// 	`
+		// }
+	}
+
+	var newStyle = injectStyle(numa, numb);
+
+}
+document.getElementById('each-after').addEventListener('keyup', function(){
+	var vala = document.getElementById('each-after-a').innerHTML;
+	var valb = document.getElementById('each-after-b').innerHTML;
+	eachAfter(vala, valb)
+})
+
 
 ///////////////////////////////
 // fromFirstLast
@@ -244,7 +288,8 @@ function fromFirstLast(num) {
 }
 document.getElementById('from-first-last').addEventListener('keyup', function(){
 	fromFirstLast(this.innerHTML)
-});
+})
+
 
 ///////////////////////////////
 // middle
@@ -264,7 +309,8 @@ function middle(num) {
 }
 document.getElementById('middle').addEventListener('keyup', function(){
 	middle(this.innerHTML)
-});
+})
+
 
 ///////////////////////////////
 // allButFirstLast
@@ -285,7 +331,8 @@ function allButFirstLast(num) {
 }
 document.getElementById('all-but-first-last').addEventListener('keyup', function(){
 	allButFirstLast(this.innerHTML)
-});
+})
+
 
 ///////////////////////////////
 // firstOf
@@ -305,7 +352,8 @@ function firstOf(num) {
 }
 document.getElementById('first-of').addEventListener('keyup', function(){
 	firstOf(this.innerHTML)
-});
+})
+
 
 ///////////////////////////////
 // lastOf
@@ -325,7 +373,7 @@ function lastOf(num) {
 }
 document.getElementById('last-of').addEventListener('keyup', function(){
 	lastOf(this.innerHTML)
-});
+})
 
 
 
@@ -347,7 +395,8 @@ function atLeast(num) {
 }
 document.getElementById('at-least').addEventListener('keyup', function(){
 	atLeast(this.innerHTML)
-});
+})
+
 
 ///////////////////////////////
 // atMost
@@ -367,7 +416,8 @@ function atMost(num) {
 }
 document.getElementById('at-most').addEventListener('keyup', function(){
 	atMost(this.innerHTML)
-});
+})
+
 
 ///////////////////////////////
 // inBetween
@@ -389,4 +439,4 @@ document.getElementById('in-between').addEventListener('keyup', function(){
 	var vala = document.getElementById('in-between-a').innerHTML;
 	var valb = document.getElementById('in-between-b').innerHTML;
 	inBetween(vala, valb)
-});
+})
